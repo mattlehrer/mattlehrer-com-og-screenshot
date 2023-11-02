@@ -17,7 +17,7 @@ export default {
 			const page = await browser.newPage();
 			await page.setViewport({ width: WIDTH, height: HEIGHT, deviceScaleFactor: 1.5 });
 			await page.goto(url);
-			const img: Buffer = (await page.screenshot()) as Buffer;
+			const img: Buffer = (await page.screenshot({ captureBeyondViewport: false })) as Buffer;
 			await browser.close();
 			return new Response(img, {
 				headers: {
